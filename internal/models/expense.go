@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
-// Expense representa un gasto en el sistema
+// Expense model
 type Expense struct {
 	ID          uint           `gorm:"primaryKey" json:"id"`
 	Amount      float64        `gorm:"not null" json:"amount" binding:"required,gt=0"`
@@ -18,7 +18,7 @@ type Expense struct {
 	DeletedAt   gorm.DeletedAt `gorm:"index" json:"-"`
 }
 
-// CreateExpenseRequest es el DTO para crear un gasto
+// CreateExpenseRequest is the DTO for creating an expense.
 type CreateExpenseRequest struct {
 	Amount      float64 `json:"amount" binding:"required,gt=0"`
 	Category    string  `json:"category" binding:"required"`
@@ -26,7 +26,7 @@ type CreateExpenseRequest struct {
 	Date        int64   `json:"date" binding:"required"`
 }
 
-// UpdateExpenseRequest es el DTO para actualizar un gasto
+// UpdateExpenseRequest is the DTO for update an expense
 type UpdateExpenseRequest struct {
 	Amount      *float64 `json:"amount" binding:"omitempty,gt=0"`
 	Category    *string  `json:"category" binding:"omitempty"`
@@ -34,7 +34,7 @@ type UpdateExpenseRequest struct {
 	Date        *int64   `json:"date"`
 }
 
-// CategoryStats representa estadísticas por categoría
+// CategoryStats shows the statistics categorised by category.
 type CategoryStats struct {
 	Category string  `json:"category"`
 	Total    float64 `json:"total"`
